@@ -18,7 +18,7 @@ nonogram.out : $(OBJECTS)
 
 # General rule to turn any.c to any.o
 %.o : %.c makefile
-	$(CC) -c $(<) -o $(<:.c=.o) -Wall -Wpedantic -Wextra
+	$(CC) -c $(<) -o $(<:.c=.o) -Wall -Wpedantic -Wextra -Werror
 
 # Cleanup - removes all object files and the output file
 clean :
