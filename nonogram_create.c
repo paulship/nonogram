@@ -3,6 +3,7 @@
 #include <stdio.h>
 
 #include "nonogram.h"
+#include "nonogram_strip.h"
 
 static void setup_strip( CELLSTRIP_T* my_strip, CELLSTATE_T* cell_ptr, uint16_t length, uint16_t stepsize );
 static void set_strip_regions( CELLSTRIP_T* my_strip, uint16_t n_regions, uint16_t* regions_ptr );
@@ -77,6 +78,9 @@ GAME_T* create_game( void )
     set_strip_regions( &my_game->strips[16], 1, (uint16_t[]){ 4 } );
     set_strip_regions( &my_game->strips[17], 1, (uint16_t[]){ 1 } );
     set_strip_regions( &my_game->strips[18], 1, (uint16_t[]){ 1 } );
+
+    /* This call initialises all strips with their potential patterns. */
+    nonogram_strip_init_all( my_game );
 
     return( my_game );
 }
