@@ -15,6 +15,7 @@ void nonogram_strip_init_all( GAME_T* my_game )
 
     for( uint16_t n=0; n<n_strips; n++ )
     {
+        printf("Calculating strip %d\n", n );
         nonogram_strip_init( my_game->strips + n );
     }
 }
@@ -54,6 +55,8 @@ void nonogram_strip_init( CELLSTRIP_T* cellstrip )
 */
 static void calculate_potential( const CELLSTRIP_T* cellstrip_data_ptr, struct POSSIBLE_T** next_poss_ptr, const uint16_t top_region, bool* pattern, uint16_t mod_length )
 {
+    printf("Calculate potential, top_region %u, mod_length %u \n", top_region, mod_length );
+
     if( top_region>0 )
     {
         // Variable first_start represents the cell index where our current region will
@@ -98,8 +101,18 @@ static void calculate_potential( const CELLSTRIP_T* cellstrip_data_ptr, struct P
 
 static struct POSSIBLE_T** add_potential( struct POSSIBLE_T** next_poss_ptr, bool* pattern, uint16_t length )
 {
-    (void)pattern;
-    (void)length;
+    for( uint16_t n=0; n<length; n++ )
+    {
+        if( pattern[n] )
+        {
+            printf("#");
+        }
+        else
+        {
+            printf("-");
+        }        
+    }
+    printf("\n");
     return( next_poss_ptr );
 }
 

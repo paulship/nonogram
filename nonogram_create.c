@@ -80,6 +80,7 @@ GAME_T* create_game( void )
     set_strip_regions( &my_game->strips[18], 1, (uint16_t[]){ 1 } );
 
     /* This call initialises all strips with their potential patterns. */
+    printf("Calculating potential strips.\n");
     nonogram_strip_init_all( my_game );
 
     return( my_game );
@@ -87,6 +88,7 @@ GAME_T* create_game( void )
 
 static void setup_strip( CELLSTRIP_T* my_strip, CELLSTATE_T* cell_ptr, uint16_t length, uint16_t stepsize )
 {
+    my_strip->length = length;
     my_strip->cells = malloc( sizeof(CELLSTATE_T*) * length );
     for( uint16_t n=0; n<length; n++ )
     {
