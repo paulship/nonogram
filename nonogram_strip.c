@@ -7,6 +7,7 @@
 #include "nonogram_strip.h"
 
 static void calculate_potential( const CELLSTRIP_T* cellstrip_data_ptr, struct POSSIBLE_T** next_poss_ptr, const uint16_t top_region, bool* pattern, uint16_t mod_length );
+static void print_potential( bool* pattern, uint16_t length );
 static struct POSSIBLE_T** add_potential( struct POSSIBLE_T** next_poss_ptr, bool* pattern, uint16_t length );
 
 void nonogram_strip_init_all( GAME_T* my_game )
@@ -55,7 +56,7 @@ void nonogram_strip_init( CELLSTRIP_T* cellstrip )
 */
 static void calculate_potential( const CELLSTRIP_T* cellstrip_data_ptr, struct POSSIBLE_T** next_poss_ptr, const uint16_t top_region, bool* pattern, uint16_t mod_length )
 {
-    printf("Calculate potential, top_region %u, mod_length %u \n", top_region, mod_length );
+    // printf("Calculate potential, top_region %u, mod_length %u \n", top_region, mod_length );
 
     if( top_region>0 )
     {
@@ -94,12 +95,13 @@ static void calculate_potential( const CELLSTRIP_T* cellstrip_data_ptr, struct P
     }
     else
     {
+        print_potential( pattern, cellstrip_data_ptr->length );
         next_poss_ptr = add_potential( next_poss_ptr, pattern, cellstrip_data_ptr->length );
     }
 
 }
 
-static struct POSSIBLE_T** add_potential( struct POSSIBLE_T** next_poss_ptr, bool* pattern, uint16_t length )
+static void print_potential( bool* pattern, uint16_t length )
 {
     for( uint16_t n=0; n<length; n++ )
     {
@@ -113,6 +115,42 @@ static struct POSSIBLE_T** add_potential( struct POSSIBLE_T** next_poss_ptr, boo
         }        
     }
     printf("\n");
-    return( next_poss_ptr );
+}
+
+static struct POSSIBLE_T** add_potential( struct POSSIBLE_T** next_poss_ptr, bool* pattern, uint16_t length )
+{
+    // First allocate memory for our POSSIBLE_T structure, next to be added to the linked list.
+    struct POSSIBLE_T* new_possible = malloc( sizeof( struct POSSIBLE_T ) );
+    if( new_possible == NULL )
+    {
+        printf("Memory allocation failure 1 in add_potential\n");
+        exit( EXIT_FAILURE );
+    }
+
+    // Now allocate memory for the cell states
+    new_possible->candidate = malloc( sizeof( new_possible->candidate ) * length );
+    if( new_possible->candidate == NULL )
+    {
+        printf("Memory allocation failure 2 in add_potential\n");
+        exit( EXIT_FAILURE );
+    }
+
+    // Copy the cell pattern into the new candidate structure
+    for( uint16_t l=0; l<length; l++ )
+    {
+        if( pattern[l] )
+        {
+            new_possible->candidate[l] = DEFF_FILL;
+        }
+        else
+        {
+            new_possible->candidate[l] = DEFF_BLANK;
+        }        
+    }
+
+    // Update pointers for linked list
+    new_possible->next = NULL;
+    *next_poss_ptr = new_possible;
+    return( &(new_possible->next) );
 }
 
