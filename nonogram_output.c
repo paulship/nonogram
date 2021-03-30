@@ -6,7 +6,7 @@
 #include "nonogram_output.h"
 
 
-void output_game( GAME_T* game_ptr )
+void nonogram_output( GAME_T* game_ptr )
 {
     const uint16_t rows = game_ptr->rows;
     const uint16_t columns = game_ptr->columns;
