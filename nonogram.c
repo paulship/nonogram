@@ -9,7 +9,7 @@
 
 int main( void )
 {
-    GAME_T* my_game = create_game();
+    GAME_T* my_game = nonogram_create();
 
     nonogram_output( my_game );
 

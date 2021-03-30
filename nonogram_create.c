@@ -8,7 +8,7 @@
 static void setup_strip( CELLSTRIP_T* my_strip, CELLSTATE_T* cell_ptr, uint16_t length, uint16_t stepsize );
 static void set_strip_regions( CELLSTRIP_T* my_strip, uint16_t n_regions, uint16_t* regions_ptr );
 
-GAME_T* create_game( void )
+GAME_T* nonogram_create( void )
 {
     GAME_T* my_game = malloc( sizeof(GAME_T) );
     if( my_game == NULL )
