@@ -31,13 +31,13 @@ void nonogram_solve( GAME_T* game_ptr )
 
         for( uint16_t ii=0; ii<n_strips; ii++ )
         {
-            printf("Checking strip %d\n",ii);
+            //printf("Checking strip %d\n",ii);
             if( check_strip( game_ptr->strips + ii ) )
             {
                 change_made = true;
             }
-            printf("Checked strip %d and got:\n",ii);
-            nonogram_output( game_ptr );
+            //printf("Checked strip %d and got:\n",ii);
+            //nonogram_output( game_ptr );
         }
 
     } while ( change_made );
@@ -80,7 +80,7 @@ static bool apply_strip_possibilities( CELLSTRIP_T* strip_ptr )
 
         if( remove_poss )
         {
-            printf("Possibility removed.\n");
+            //printf("Possibility removed.\n");
             free( poss_ptr->candidate );
             poss_ptr = poss_ptr->next;
             free( *link_ptr );
@@ -88,7 +88,7 @@ static bool apply_strip_possibilities( CELLSTRIP_T* strip_ptr )
         }
         else
         {
-            printf("Possibility retained.\n");
+            //printf("Possibility retained.\n");
             link_ptr = &poss_ptr->next;
             poss_ptr = poss_ptr->next;
         }        

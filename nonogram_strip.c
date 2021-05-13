@@ -7,7 +7,7 @@
 #include "nonogram_strip.h"
 
 static void calculate_potential( const CELLSTRIP_T* cellstrip_data_ptr, struct POSSIBLE_T** next_poss_ptr, const uint16_t top_region, bool* pattern, uint16_t mod_length );
-static void print_potential( bool* pattern, uint16_t length );
+//static void print_potential( bool* pattern, uint16_t length );
 static void add_potential( struct POSSIBLE_T** next_poss_ptr, bool* pattern, uint16_t length );
 
 void nonogram_strip_init_all( GAME_T* my_game )
@@ -16,7 +16,7 @@ void nonogram_strip_init_all( GAME_T* my_game )
 
     for( uint16_t n=0; n<n_strips; n++ )
     {
-        printf("Calculating strip %d\n", n );
+        //printf("Calculating strip %d\n", n );
         nonogram_strip_init( my_game->strips + n );
     }
 }
@@ -95,12 +95,13 @@ static void calculate_potential( const CELLSTRIP_T* cellstrip_data_ptr, struct P
     }
     else
     {
-        print_potential( pattern, cellstrip_data_ptr->length );
+        //print_potential( pattern, cellstrip_data_ptr->length );
         add_potential( list_start, pattern, cellstrip_data_ptr->length );
     }
 
 }
 
+#if 0
 static void print_potential( bool* pattern, uint16_t length )
 {
     for( uint16_t n=0; n<length; n++ )
@@ -116,6 +117,7 @@ static void print_potential( bool* pattern, uint16_t length )
     }
     printf("\n");
 }
+#endif
 
 static void add_potential( struct POSSIBLE_T** list_start, bool* pattern, uint16_t length )
 {
