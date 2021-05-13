@@ -28,5 +28,5 @@ void nonogram_output( GAME_T* game_ptr )
         }
         printf("\n");
     }
-    printf("Done.");
+    //printf("Done.");
 }
