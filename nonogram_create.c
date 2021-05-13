@@ -16,8 +16,8 @@ GAME_T* nonogram_create( void )
         return NULL;
     }
 
-    const uint16_t rows = 4;
-    const uint16_t columns = 15;
+    const uint16_t rows = 25;
+    const uint16_t columns = 25;
 
     my_game->rows = rows;
     my_game->columns = columns;
@@ -58,26 +58,57 @@ GAME_T* nonogram_create( void )
         setup_strip( &my_game->strips[rows+n], start_cell, rows, columns );
     }
 
-    set_strip_regions( &my_game->strips[0], 5, (uint16_t[]){ 3, 1, 1, 1, 1 } );
-    set_strip_regions( &my_game->strips[1], 7, (uint16_t[]){ 1, 1, 1, 1, 1, 1, 1 } );
-    set_strip_regions( &my_game->strips[2], 5, (uint16_t[]){ 3, 3, 1, 1, 1 } );
-    set_strip_regions( &my_game->strips[3], 5, (uint16_t[]){ 1, 1, 1, 3, 3 } );
+    set_strip_regions( &my_game->strips[0], 1, (uint16_t[]){ 11 } );
+    set_strip_regions( &my_game->strips[1], 2, (uint16_t[]){ 3, 3 } );
+    set_strip_regions( &my_game->strips[2], 3, (uint16_t[]){ 3, 1, 3 } );
+    set_strip_regions( &my_game->strips[3], 3, (uint16_t[]){ 2, 2, 2 } );
+    set_strip_regions( &my_game->strips[4], 3, (uint16_t[]){ 2, 1, 2 } );
+    set_strip_regions( &my_game->strips[5], 3, (uint16_t[]){ 3, 2, 1 } );
+    set_strip_regions( &my_game->strips[6], 4, (uint16_t[]){ 2, 1, 2, 2 } );
+    set_strip_regions( &my_game->strips[7], 4, (uint16_t[]){ 2, 1, 2, 2 } );
+    set_strip_regions( &my_game->strips[8], 4, (uint16_t[]){ 6, 2, 4, 5 } );
+    set_strip_regions( &my_game->strips[9], 7, (uint16_t[]){ 2, 3, 1, 2, 2, 1, 3 } );
+    set_strip_regions( &my_game->strips[10], 6, (uint16_t[]){ 3, 2, 2, 4, 3, 3 } );
+    set_strip_regions( &my_game->strips[11], 10, (uint16_t[]){ 2, 2, 1, 1, 1, 1, 1, 1, 1, 1 } );
+    set_strip_regions( &my_game->strips[12], 6, (uint16_t[]){ 2, 1, 3, 2, 1, 2 } );
+    set_strip_regions( &my_game->strips[13], 5, (uint16_t[]){ 4, 5, 1, 1, 4 } );
+    set_strip_regions( &my_game->strips[14], 4, (uint16_t[]){ 10, 2, 1, 3 } );
+    set_strip_regions( &my_game->strips[15], 5, (uint16_t[]){ 2, 4, 2, 5, 2 } );
+    set_strip_regions( &my_game->strips[16], 3, (uint16_t[]){ 9, 1, 2 } );
+    set_strip_regions( &my_game->strips[17], 4, (uint16_t[]){ 3, 2, 6, 1 } );
+    set_strip_regions( &my_game->strips[18], 3, (uint16_t[]){ 4, 1, 1 } );
+    set_strip_regions( &my_game->strips[19], 3, (uint16_t[]){ 6, 2, 1 } );
+    set_strip_regions( &my_game->strips[20], 2, (uint16_t[]){ 8, 2 } );
+    set_strip_regions( &my_game->strips[21], 2, (uint16_t[]){ 11, 2 } );
+    set_strip_regions( &my_game->strips[22], 4, (uint16_t[]){ 5, 4, 6, 2 } );
+    set_strip_regions( &my_game->strips[23], 5, (uint16_t[]){ 8, 4, 3, 2, 2 } );
+    set_strip_regions( &my_game->strips[24], 4, (uint16_t[]){ 9, 4, 3, 5 } );
 
-    set_strip_regions( &my_game->strips[4], 1, (uint16_t[]){ 4 } );
-    set_strip_regions( &my_game->strips[5], 2, (uint16_t[]){ 1, 1 } );
-    set_strip_regions( &my_game->strips[6], 1, (uint16_t[]){ 3 } );
-    set_strip_regions( &my_game->strips[7], 0, (uint16_t[]){ 0 } );
-    set_strip_regions( &my_game->strips[8], 1, (uint16_t[]){ 3 } );
-    set_strip_regions( &my_game->strips[9], 2, (uint16_t[]){ 1, 1 } );
-    set_strip_regions( &my_game->strips[10], 1, (uint16_t[]){ 3 } );
-    set_strip_regions( &my_game->strips[11], 0, (uint16_t[]){ 0 } );
-    set_strip_regions( &my_game->strips[12], 1, (uint16_t[]){ 4 } );
-    set_strip_regions( &my_game->strips[13], 1, (uint16_t[]){ 1 } );
-    set_strip_regions( &my_game->strips[14], 1, (uint16_t[]){ 4 } );
-    set_strip_regions( &my_game->strips[15], 0, (uint16_t[]){ 0 } );
-    set_strip_regions( &my_game->strips[16], 1, (uint16_t[]){ 4 } );
-    set_strip_regions( &my_game->strips[17], 1, (uint16_t[]){ 1 } );
-    set_strip_regions( &my_game->strips[18], 1, (uint16_t[]){ 1 } );
+    set_strip_regions( &my_game->strips[25], 2, (uint16_t[]){ 5, 2 } );
+    set_strip_regions( &my_game->strips[26], 2, (uint16_t[]){ 8, 2 } );
+    set_strip_regions( &my_game->strips[27], 3, (uint16_t[]){ 6, 4, 3 } );
+    set_strip_regions( &my_game->strips[28], 4, (uint16_t[]){ 5, 4, 1, 3 } );
+    set_strip_regions( &my_game->strips[29], 4, (uint16_t[]){ 4, 4, 3, 4 } );
+    set_strip_regions( &my_game->strips[30], 4, (uint16_t[]){ 3, 5, 6, 5 } );
+    set_strip_regions( &my_game->strips[31], 3, (uint16_t[]){ 3, 2, 14 } );
+    set_strip_regions( &my_game->strips[32], 3, (uint16_t[]){ 2, 10, 2 } );
+    set_strip_regions( &my_game->strips[33], 6, (uint16_t[]){ 1, 5, 4, 1, 5, 1 } );
+    set_strip_regions( &my_game->strips[34], 5, (uint16_t[]){ 1, 6, 1, 5, 5 } );
+    set_strip_regions( &my_game->strips[35], 4, (uint16_t[]){ 1, 2, 2, 10 } );
+    set_strip_regions( &my_game->strips[36], 3, (uint16_t[]){ 1, 2, 6 } );
+    set_strip_regions( &my_game->strips[37], 6, (uint16_t[]){ 1, 1, 1, 1, 2, 2 } );
+    set_strip_regions( &my_game->strips[38], 6, (uint16_t[]){ 1, 1, 2, 1, 2, 1 } );
+    set_strip_regions( &my_game->strips[39], 5, (uint16_t[]){ 1, 3, 1, 1, 3 } );
+    set_strip_regions( &my_game->strips[40], 5, (uint16_t[]){ 1, 4, 2, 1, 3 } );
+    set_strip_regions( &my_game->strips[41], 5, (uint16_t[]){ 2, 4, 1, 1, 3 } );
+    set_strip_regions( &my_game->strips[42], 7, (uint16_t[]){ 2, 3, 1, 1, 1, 1, 1 } );
+    set_strip_regions( &my_game->strips[43], 6, (uint16_t[]){ 3, 1, 1, 3, 1, 3 } );
+    set_strip_regions( &my_game->strips[44], 5, (uint16_t[]){ 3, 1, 2, 2, 2 } );
+    set_strip_regions( &my_game->strips[45], 4, (uint16_t[]){ 6, 5, 1, 1 } );
+    set_strip_regions( &my_game->strips[46], 2, (uint16_t[]){ 11, 3 } );
+    set_strip_regions( &my_game->strips[47], 3, (uint16_t[]){ 3, 3, 2 } );
+    set_strip_regions( &my_game->strips[48], 2, (uint16_t[]){ 5, 1 } );
+    set_strip_regions( &my_game->strips[49], 1, (uint16_t[]){ 2 } );
 
     /* This call initialises all strips with their potential patterns. */
     printf("Calculating potential strips.\n");
