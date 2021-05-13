@@ -7,6 +7,7 @@ CC := gcc
 C_SOURCES = ./nonogram.c \
             ./nonogram_create.c \
             ./nonogram_strip.c \
+            ./nonogram_solve.c \
             ./nonogram_output.c
 
 # The list of objects is the same as sources with '.c' changes to '.o'
