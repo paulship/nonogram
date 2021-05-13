@@ -8,7 +8,7 @@
 
 static void calculate_potential( const CELLSTRIP_T* cellstrip_data_ptr, struct POSSIBLE_T** next_poss_ptr, const uint16_t top_region, bool* pattern, uint16_t mod_length );
 static void print_potential( bool* pattern, uint16_t length );
-static struct POSSIBLE_T** add_potential( struct POSSIBLE_T** next_poss_ptr, bool* pattern, uint16_t length );
+static void add_potential( struct POSSIBLE_T** next_poss_ptr, bool* pattern, uint16_t length );
 
 void nonogram_strip_init_all( GAME_T* my_game )
 {
@@ -26,7 +26,7 @@ void nonogram_strip_init( CELLSTRIP_T* cellstrip )
     // Reinitialise the pointer to list of potential solutions (TODO: possble future enhancement
     // to 'free' any memory that is currently here if not a NULL pointer)
     cellstrip->possible_list = NULL;
-    struct POSSIBLE_T** next_ptr = &cellstrip->possible_list;
+    struct POSSIBLE_T** list_start = &cellstrip->possible_list;
     
     // Set up a working area for generating these strips. The concept here is we have a recursive
     // function call that will move bits around this memory, but when we add them to the linked
@@ -45,7 +45,7 @@ void nonogram_strip_init( CELLSTRIP_T* cellstrip )
     }
 
     // Begin calculations
-    calculate_potential( cellstrip, next_ptr, cellstrip->n_regions, pattern, cellstrip->length );
+    calculate_potential( cellstrip, list_start, cellstrip->n_regions, pattern, cellstrip->length );
 
     // Free up memory
     free( pattern );
@@ -54,7 +54,7 @@ void nonogram_strip_init( CELLSTRIP_T* cellstrip )
 /*
     This is a recursive function that calculates the potential cellstrip patterns.
 */
-static void calculate_potential( const CELLSTRIP_T* cellstrip_data_ptr, struct POSSIBLE_T** next_poss_ptr, const uint16_t top_region, bool* pattern, uint16_t mod_length )
+static void calculate_potential( const CELLSTRIP_T* cellstrip_data_ptr, struct POSSIBLE_T** list_start, const uint16_t top_region, bool* pattern, uint16_t mod_length )
 {
     // printf("Calculate potential, top_region %u, mod_length %u \n", top_region, mod_length );
 
@@ -84,7 +84,7 @@ static void calculate_potential( const CELLSTRIP_T* cellstrip_data_ptr, struct P
             }
 
             // Recursive call to position all regions before it.
-            calculate_potential( cellstrip_data_ptr, next_poss_ptr, top_region-1, pattern, start-1 );
+            calculate_potential( cellstrip_data_ptr, list_start, top_region-1, pattern, start-1 );
 
             // Clear the region for the next iteration.
             for( uint16_t i=start; i<start+cellstrip_data_ptr->region_size[top_region-1]; i++ )
@@ -96,7 +96,7 @@ static void calculate_potential( const CELLSTRIP_T* cellstrip_data_ptr, struct P
     else
     {
         print_potential( pattern, cellstrip_data_ptr->length );
-        next_poss_ptr = add_potential( next_poss_ptr, pattern, cellstrip_data_ptr->length );
+        add_potential( list_start, pattern, cellstrip_data_ptr->length );
     }
 
 }
@@ -117,7 +117,7 @@ static void print_potential( bool* pattern, uint16_t length )
     printf("\n");
 }
 
-static struct POSSIBLE_T** add_potential( struct POSSIBLE_T** next_poss_ptr, bool* pattern, uint16_t length )
+static void add_potential( struct POSSIBLE_T** list_start, bool* pattern, uint16_t length )
 {
     // First allocate memory for our POSSIBLE_T structure, next to be added to the linked list.
     struct POSSIBLE_T* new_possible = malloc( sizeof( struct POSSIBLE_T ) );
@@ -150,7 +150,10 @@ static struct POSSIBLE_T** add_potential( struct POSSIBLE_T** next_poss_ptr, boo
 
     // Update pointers for linked list
     new_possible->next = NULL;
-    *next_poss_ptr = new_possible;
-    return( &(new_possible->next) );
+    while( *list_start != NULL )
+    {
+        list_start = &((*list_start)->next);
+    }
+    *list_start = new_possible;
 }
 
