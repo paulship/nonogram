@@ -2,6 +2,7 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <unistd.h>
 
 #include "nonogram_output.h"
 #include "nonogram_solve.h"
@@ -39,6 +40,9 @@ void nonogram_solve( GAME_T* game_ptr )
             //printf("Checked strip %d and got:\n",ii);
             //nonogram_output( game_ptr );
         }
+
+        nonogram_output( game_ptr );
+        usleep( 500000u );
 
     } while ( change_made );
     
