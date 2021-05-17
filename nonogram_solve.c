@@ -41,8 +41,9 @@ void nonogram_solve( GAME_T* game_ptr )
             //nonogram_output( game_ptr );
         }
 
+        printf("\n_________________________\n\n");
         nonogram_output( game_ptr );
-        usleep( 500000u );
+        usleep( 50000u );
 
     } while ( change_made );
     
