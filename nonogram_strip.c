@@ -16,7 +16,7 @@ void nonogram_strip_init_all( GAME_T* my_game )
 
     for( uint16_t n=0; n<n_strips; n++ )
     {
-        //printf("Calculating strip %d\n", n );
+        printf("Calculating strip %d\n", n );
         nonogram_strip_init( my_game->strips + n );
     }
 }
