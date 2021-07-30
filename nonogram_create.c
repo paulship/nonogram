@@ -87,7 +87,7 @@ GAME_T* nonogram_create( void )
     set_strip_regions( &my_game->strips[26], 6, (uint16_t[]){ 1, 3, 1, 5, 5, 5 } );
     set_strip_regions( &my_game->strips[27], 7, (uint16_t[]){ 1, 3, 1, 1, 1, 2, 5 } );
     set_strip_regions( &my_game->strips[28], 5, (uint16_t[]){ 8, 1, 1, 3, 2 } );
-    set_strip_regions( &my_game->strips[29], 4, (uint16_t[]){ 5, 2, 6, 8 } );
+    set_strip_regions( &my_game->strips[29], 5, (uint16_t[]){ 5, 2, 6, 8, 2 } );
     
     set_strip_regions( &my_game->strips[30], 5, (uint16_t[]){ 5, 2, 2, 5, 2 } );
     set_strip_regions( &my_game->strips[31], 4, (uint16_t[]){ 7, 3, 1, 9 } );
@@ -117,8 +117,8 @@ GAME_T* nonogram_create( void )
     set_strip_regions( &my_game->strips[55], 6, (uint16_t[]){ 1, 5, 2, 2, 3, 3 } );
     set_strip_regions( &my_game->strips[56], 4, (uint16_t[]){ 7, 8, 3, 6 } );
     set_strip_regions( &my_game->strips[57], 5, (uint16_t[]){ 5, 2, 2, 4, 5 } );
-    set_strip_regions( &my_game->strips[58], 3, (uint16_t[]){ 3, 8, 10 } );
-    set_strip_regions( &my_game->strips[59], 2, (uint16_t[]){ 2, 8 } );
+    set_strip_regions( &my_game->strips[58], 4, (uint16_t[]){ 3, 8, 10, 1 } );
+    set_strip_regions( &my_game->strips[59], 3, (uint16_t[]){ 2, 8, 1 } );
 
     /* This call initialises all strips with their potential patterns. */
     printf("Calculating potential strips.\n");
